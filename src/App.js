@@ -1,24 +1,67 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { generatePassword } from "./passwordGenerator";
+
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function App() {
+  const [password, setPassword] = useState("");
+  const [length, setLength] = useState(4);
+  const [uppercaseEnabled, setUppercaseEnabled] = useState(false);
+  const [numbersEnabled, setNumbersEnabled] = useState(false);
+  const [symbolsEnabled, setSymbolsEnabled] = useState(false);
+
+  const checkboxes = [
+    {
+      label: "Allows Uppercase Letters",
+      disabled: uppercaseEnabled,
+      onClick: () => setUppercaseEnabled(!uppercaseEnabled)
+    },
+    {
+      label: "Allows Numbers",
+      disabled: numbersEnabled,
+      onClick: () => setNumbersEnabled(!numbersEnabled)
+    },
+    {
+      label: "Allows Symbols",
+      disabled: symbolsEnabled,
+      onClick: () => setSymbolsEnabled(!symbolsEnabled)
+    }
+  ];
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="container">
+      <Card>
+        <Card.Body>
+          <Card.Text>{password}</Card.Text>
+          <div className="mb-3">
+            {checkboxes.map(checkbox => (
+              <Form.Check
+                id="default-checkbox"
+                checked={checkbox.disabled}
+                label={checkbox.label}
+                onClick={checkbox.onClick}
+              />
+            ))}
+          </div>
+          <Button
+            variant="primary"
+            onClick={() =>
+              setPassword(
+                generatePassword(
+                  12,
+                  uppercaseEnabled,
+                  numbersEnabled,
+                  symbolsEnabled
+                )
+              )
+            }
+          >
+            Generate Password
+          </Button>
+        </Card.Body>
+      </Card>
     </div>
   );
 }
