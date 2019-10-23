@@ -44,29 +44,25 @@ export function generatePassword(
   numbersEnabled = false,
   symbolsEnabled = false
 ) {
-  var result = [];
+  var result = "";
   var options = ["lowerCase"];
-  if (upperCaseEnabled) options.concat("upperCase");
-  if (numbersEnabled) options.concat("numbers");
-  if (symbolsEnabled) options.concat("symbols");
+  if (upperCaseEnabled) options.push("upperCase");
+  if (numbersEnabled) options.push("numbers");
+  if (symbolsEnabled) options.push("symbols");
   for (var i = 0; i < length; i++) {
     // Randomly pick between upper, lower, number or symbol
-    const selectedOption = Math.floor(Math.random() * options.length);
+    const selectedOption = options[Math.floor(Math.random() * options.length)];
     switch (selectedOption) {
-      case 0:
-        // lower case
+      case "lowerCase":
         result += pickCharacterFromRange(asciiRanges.lowerCase);
         break;
-      case 1:
-        // upper case
+      case "upperCase":
         result += pickCharacterFromRange(asciiRanges.upperCase);
         break;
-      case 2:
-        // number
+      case "numbers":
         result += pickCharacterFromRange(asciiRanges.numbers);
         break;
-      case 3:
-        // symbol
+      case "symbols":
         // have to randomly pick a symbol range
         const rangeSelected = Math.floor(Math.random() * 4);
         result += pickCharacterFromRange(asciiRanges.symbols[rangeSelected]);
