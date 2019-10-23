@@ -35,6 +35,8 @@ function App() {
       <Card>
         <Card.Body>
           <Card.Text>{password}</Card.Text>
+          <input type="range" min="4" max="20" step="1" value={length} onChange={e => setLength(e.target.value)} />
+          <span>Length: {length}</span>
           <div className="mb-3">
             {checkboxes.map(checkbox => (
               <Form.Check
@@ -50,7 +52,7 @@ function App() {
             onClick={() =>
               setPassword(
                 generatePassword(
-                  12,
+                  length,
                   uppercaseEnabled,
                   numbersEnabled,
                   symbolsEnabled
