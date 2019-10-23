@@ -16,17 +16,17 @@ function App() {
   const checkboxes = [
     {
       label: "Allows Uppercase Letters",
-      disabled: uppercaseEnabled,
+      checked: uppercaseEnabled,
       onClick: () => setUppercaseEnabled(!uppercaseEnabled)
     },
     {
       label: "Allows Numbers",
-      disabled: numbersEnabled,
+      checked: numbersEnabled,
       onClick: () => setNumbersEnabled(!numbersEnabled)
     },
     {
       label: "Allows Symbols",
-      disabled: symbolsEnabled,
+      checked: symbolsEnabled,
       onClick: () => setSymbolsEnabled(!symbolsEnabled)
     }
   ];
@@ -39,7 +39,7 @@ function App() {
             {checkboxes.map(checkbox => (
               <Form.Check
                 id="default-checkbox"
-                checked={checkbox.disabled}
+                checked={checkbox.checked}
                 label={checkbox.label}
                 onClick={checkbox.onClick}
               />
