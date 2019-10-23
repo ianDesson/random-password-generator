@@ -1,13 +1,12 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a1687647-a0a0-4cb4-8fd4-f057adab3179/deploy-status)](https://app.netlify.com/sites/quirky-ramanujan-de0d75/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a1687647-a0a0-4cb4-8fd4-f057adab3179/deploy-status)](https://app.netlify.com/sites/quirky-ramanujan-de0d75/deploys)  
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-electricity.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/gluten-free.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
+
 This React App is a random password generator.
-
-It uses Math.random() to generate a random string of characters that can be used in a password.
-
-The password generation can be found in src/passwordGenerator.js
+It uses Math.random() to generate a random string of characters that can be used in a password.  
+The password generation can be found in `src/passwordGenerator.js`
 
 ## Available Scripts
 
