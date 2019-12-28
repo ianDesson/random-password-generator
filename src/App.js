@@ -2,16 +2,22 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { generatePassword } from "./passwordGenerator";
 
+
+import Slider, { createSliderWithTooltip } from "rc-slider";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function App() {
+import 'rc-slider/assets/index.css'
+
+const App = () => {
   const [password, setPassword] = useState("");
   const [length, setLength] = useState(4);
   const [uppercaseEnabled, setUppercaseEnabled] = useState(false);
   const [numbersEnabled, setNumbersEnabled] = useState(false);
   const [symbolsEnabled, setSymbolsEnabled] = useState(false);
+
+  const SliderWithTooltip = createSliderWithTooltip(Slider);
 
   const checkboxes = [
     {
@@ -34,8 +40,26 @@ function App() {
     <div class="container">
       <Card>
         <Card.Body>
-          <Card.Text>{password}</Card.Text>
-          <input type="range" min="4" max="20" step="1" value={length} onChange={e => setLength(e.target.value)} />
+          <Card.Text>
+            {password
+              ? `Password: ${password}`
+              : "Click Generate Password to generate a password!"}
+          </Card.Text>
+          <SliderWithTooltip
+          style={{width: '25%'}}
+            min={4}
+            max={20}
+            defaultValue={length}
+            onAfterChange={value => setLength(value)}
+          />
+          {/* <input
+            type="range"
+            min="4"
+            max="20"
+            step="1"
+            value={length}
+            onChange={e => setLength(e.target.value)}
+          /> */}
           <span>Length: {length}</span>
           <div className="mb-3">
             {checkboxes.map(checkbox => (
@@ -66,6 +90,6 @@ function App() {
       </Card>
     </div>
   );
-}
+};
 
 export default App;
