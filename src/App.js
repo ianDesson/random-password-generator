@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { generatePassword } from "./passwordGenerator";
-
 
 import Slider, { createSliderWithTooltip } from "rc-slider";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-import 'rc-slider/assets/index.css'
+import "rc-slider/assets/index.css";
 
 const App = () => {
   const [password, setPassword] = useState("");
@@ -23,51 +22,62 @@ const App = () => {
     {
       label: "Allows Uppercase Letters",
       checked: uppercaseEnabled,
-      onClick: () => setUppercaseEnabled(!uppercaseEnabled)
+      onClick: () => setUppercaseEnabled(!uppercaseEnabled),
     },
     {
       label: "Allows Numbers",
       checked: numbersEnabled,
-      onClick: () => setNumbersEnabled(!numbersEnabled)
+      onClick: () => setNumbersEnabled(!numbersEnabled),
     },
     {
       label: "Allows Symbols",
       checked: symbolsEnabled,
-      onClick: () => setSymbolsEnabled(!symbolsEnabled)
-    }
+      onClick: () => setSymbolsEnabled(!symbolsEnabled),
+    },
   ];
+
+  useEffect(() => {
+    if (!password || password.length < 4) {
+      setPassword(
+        generatePassword(
+          length,
+          uppercaseEnabled,
+          numbersEnabled,
+          symbolsEnabled
+        )
+      );
+    }
+  }, [password, length, uppercaseEnabled, numbersEnabled, symbolsEnabled]);
+
   return (
-    <div class="container">
+    <div className="container">
       <Card>
         <Card.Body>
-          <Card.Text>
-            {password
-              ? `Password: ${password}`
-              : "Click Generate Password to generate a password!"}
-          </Card.Text>
+          <div class="pwd-container">
+            Password:
+            <textarea
+              style={{ resize: "none", marginLeft: '0.5em' }}
+              value={password}
+              rows={1}
+              readOnly
+            />
+          </div>
           <SliderWithTooltip
-          style={{width: '25%'}}
+            style={{ width: "25%" }}
             min={4}
             max={20}
             defaultValue={length}
-            onAfterChange={value => setLength(value)}
+            onAfterChange={(value) => setLength(value)}
           />
-          {/* <input
-            type="range"
-            min="4"
-            max="20"
-            step="1"
-            value={length}
-            onChange={e => setLength(e.target.value)}
-          /> */}
           <span>Length: {length}</span>
           <div className="mb-3">
-            {checkboxes.map(checkbox => (
+            {checkboxes.map((checkbox, index) => (
               <Form.Check
-                id="default-checkbox"
-                checked={checkbox.checked}
+                key={index}
+                id={`default-checkbox-${index}`}
+                onChange={checkbox.onClick}
                 label={checkbox.label}
-                onClick={checkbox.onClick}
+                htmlFor={`default-checkbox-${index}`}
               />
             ))}
           </div>
