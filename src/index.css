@@ -13,6 +13,6 @@ code {
 .pwd-container {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   margin-bottom: 0.75em;
 }

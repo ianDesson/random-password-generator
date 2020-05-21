@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
+import { ReactComponent as GitHubLogo } from "./github-brands.svg";
 import "rc-slider/assets/index.css";
 
 const App = () => {
@@ -56,7 +57,7 @@ const App = () => {
           <div class="pwd-container">
             Password:
             <textarea
-              style={{ resize: "none", marginLeft: '0.5em' }}
+              style={{ resize: "none", marginLeft: "0.5em" }}
               value={password}
               rows={1}
               readOnly
@@ -97,6 +98,19 @@ const App = () => {
             Generate Password
           </Button>
         </Card.Body>
+        <Card.Footer>
+          Made by Ian Desson
+          <a
+            href="https://github.com/ianDesson"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <GitHubLogo
+              style={{ height: "1.5em", marginLeft: "3px" }}
+              alt="GitHub"
+            />
+          </a>
+        </Card.Footer>
       </Card>
     </div>
   );
