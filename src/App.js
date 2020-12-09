@@ -57,7 +57,7 @@ const App = () => {
           <div class="pwd-container">
             Password:
             <textarea
-              style={{ resize: "none", marginLeft: "0.5em" }}
+              style={{ resize: "none", width: '170px', marginLeft: "0.5em" }}
               value={password}
               rows={1}
               readOnly
